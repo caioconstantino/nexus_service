@@ -6,6 +6,26 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
+
+.text-primary {
+  color:#11101d;
+}
+.text-secondary {
+  color:#707070;
+}
+.text-success {
+  color:#2eb322;
+}
+.text-info {
+  color:#2296b3;
+}
+.text-warning {
+  color:#cc9827;
+}
+.text-danger {
+  color:#b32222;
+}
+
 .sidebar{
   position: fixed;
   top: 0;
@@ -250,6 +270,17 @@
 .content-page {
     padding: 0 15px;
 }
+
+.btn-primary {
+  background-color: #11101d;
+  color: white;
+  width: 90%;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
 @media (max-width: 420px) {
   .sidebar.close .nav-links li .sub-menu{
     display: none;

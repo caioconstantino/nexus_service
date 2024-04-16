@@ -55,31 +55,47 @@
     });
   </script>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // Seleciona todos os links do menu
-      const menuLinks = document.querySelectorAll(".menu-link");
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Função para carregar a página padrão (dashboard.php)
+    function loadDefaultPage() {
+      fetch('dashboard.php')
+        .then(response => response.text())
+        .then(data => {
+          document.querySelector(".content-page").innerHTML = data;
+        })
+        .catch(error => console.error(error));
+    }
 
-      // Adiciona um listener de clique para cada link
-      menuLinks.forEach(link => {
-        link.addEventListener("click", function (event) {
-          event.preventDefault(); // Evita o comportamento padrão de clicar no link
+    // Seleciona todos os links do menu
+    const menuLinks = document.querySelectorAll(".menu-link");
 
-          const page = this.dataset.page; // Obtém o atributo data-page que contém o nome da página a ser carregada
+    // Adiciona um listener de clique para cada link
+    menuLinks.forEach(link => {
+      link.addEventListener("click", function(event) {
+        event.preventDefault(); // Evita o comportamento padrão de clicar no link
 
-          // Carrega o conteúdo da página utilizando AJAX
+        const page = this.dataset.page; // Obtém o atributo data-page que contém o nome da página a ser carregada
+
+        // Verifica se a página selecionada é nula ou vazia
+        if (!page) {
+          loadDefaultPage(); // Carrega a página padrão (dashboard.php)
+        } else {
+          // Carrega o conteúdo da página selecionada utilizando AJAX
           fetch(page)
             .then(response => response.text())
             .then(data => {
-              document.querySelector(".content-page").innerHTML = data; // Insere o conteúdo no elemento com a classe "content-page"
+              document.querySelector(".content-page").innerHTML = data;
             })
             .catch(error => console.error(error));
-        });
+        }
       });
-
-      // Outros códigos JavaScript aqui
     });
-  </script>
+
+    // Carrega a página padrão (dashboard.php) quando a página é carregada pela primeira vez
+    loadDefaultPage();
+  });
+</script>
 </body>
 
 </html>
